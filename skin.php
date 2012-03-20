@@ -122,7 +122,8 @@ function tt_SetSkinTheme($default, $valid_themes) {
   if ($theme && in_array($theme, $ValidSkinThemes))
     $SkinTheme = $theme;
   elseif (!in_array($SkinTheme, $ValidSkinThemes))
-    $SkinTheem = $default;
+    $SkinTheme = $default;
+  return $SkinTheme;
 }
 
 // Determine logo height and width
