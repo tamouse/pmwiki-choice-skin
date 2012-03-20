@@ -33,7 +33,7 @@ body.dark {
 }
 
 body.dark #nav li a:hover {
-    background-color: #222 url('img/arrow_dark.gif') no-repeat top center;
+    background: #222 url('img/arrow_dark.gif') no-repeat top center;
 }
 
 #head h1 { color: #666; }
