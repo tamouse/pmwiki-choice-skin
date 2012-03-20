@@ -28,6 +28,10 @@ $FmtPV['$SkinVersion'] = '"2.0"';
 require_once('colordefinitions.inc.php');
 
 $tt_cookieexpire = time()+10*365*24*60*20; // now + 10 years
+global $MessagesFmt;
+$MessagesFmt[] = basename(__FILE__).'@'.__LINE__.': $tt_cookieexpire: '.$tt_cookieexpire.'<br>'.PHP_EOL;
+$MessagesFmt[] = basename(__FILE__).'@'.__LINE__.': \$_SERVER["HTTP_HOST"]: '.$_SERVER['HTTP_HOST'].'<br>'.PHP_EOL;
+
 
 global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth, $HTMLStylesFmt ,$SkinTheme,$SkinColor;
 if (!empty($PageLogoUrl)) {
@@ -88,7 +92,7 @@ array_splice($WikiLibDirs, $where, 0, array(new PageStore($PageStorePath)));
 // - Standard Skin Functions
 // ----------------------------------------
 function dg_SetSkinColor($default, $valid_colors){
-  global $SkinColor, $ValidSkinColors;
+  global $SkinColor, $ValidSkinColors, $tt_cookieexpire;
   if ( !is_array($ValidSkinColors) ) $ValidSkinColors = array();
   $ValidSkinColors = array_merge($ValidSkinColors, $valid_colors);
 
@@ -118,7 +122,7 @@ function dg_SetSkinColor($default, $valid_colors){
 
 // Set the skin theme either from query string or cookie or default
 function tt_SetSkinTheme($default, $valid_themes) {
-  global $SkinTheme, $ValidSkinThemes;
+  global $SkinTheme, $ValidSkinThemes, $tt_cookieexpire;
   if (!is_array($ValidSkinThemes)) $ValidSkinThemes = array();
   $ValidSkinThemes = array_merge($ValidSkinThemes, $valid_themes);
 
