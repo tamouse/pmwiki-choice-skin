@@ -27,10 +27,7 @@ $FmtPV['$SkinVersion'] = '"2.0"';
 
 require_once('colordefinitions.inc.php');
 
-$tt_cookieexpire = time()+10*365*24*60*20; // now + 10 years
-global $MessagesFmt;
-$MessagesFmt[] = basename(__FILE__).'@'.__LINE__.': $tt_cookieexpire: '.$tt_cookieexpire.'<br>'.PHP_EOL;
-$MessagesFmt[] = basename(__FILE__).'@'.__LINE__.': \$_SERVER["HTTP_HOST"]: '.$_SERVER['HTTP_HOST'].'<br>'.PHP_EOL;
+define('SKINCOOKIEEXPIRE', time()+10*365*24*60*60);
 
 
 global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth, $HTMLStylesFmt ,$SkinTheme,$SkinColor;
@@ -92,7 +89,7 @@ array_splice($WikiLibDirs, $where, 0, array(new PageStore($PageStorePath)));
 // - Standard Skin Functions
 // ----------------------------------------
 function dg_SetSkinColor($default, $valid_colors){
-  global $SkinColor, $ValidSkinColors, $tt_cookieexpire;
+  global $SkinColor, $ValidSkinColors;
   if ( !is_array($ValidSkinColors) ) $ValidSkinColors = array();
   $ValidSkinColors = array_merge($ValidSkinColors, $valid_colors);
 
@@ -115,14 +112,16 @@ function dg_SetSkinColor($default, $valid_colors){
     $SkinColor = $default;
 
   // only set the cookie if they passed a valid color
-  if ($do_setcookie) setcookie('setcolor',$SkinColor,$tt_cookieexpire,'/',$_SERVER['HTTP_HOST'],false,true);
+  if ($do_setcookie) setcookie('setcolor',$SkinColor,SKINCOOKIEEXPIRE,'/',$_SERVER['HTTP_HOST'],false,true);
+  global $MessagesFmt;
+  $MessagesFmt[] = '<p>'.basename(__FILE__).'@'.__LINE__.': SKINCOOKIEEXPIRE: '.SKINCOOKIEEXPIRE.'</p>'.PHP_EOL;
 
   return $SkinColor;
 }
 
 // Set the skin theme either from query string or cookie or default
 function tt_SetSkinTheme($default, $valid_themes) {
-  global $SkinTheme, $ValidSkinThemes, $tt_cookieexpire;
+  global $SkinTheme, $ValidSkinThemes;
   if (!is_array($ValidSkinThemes)) $ValidSkinThemes = array();
   $ValidSkinThemes = array_merge($ValidSkinThemes, $valid_themes);
 
@@ -142,7 +141,11 @@ function tt_SetSkinTheme($default, $valid_themes) {
     $SkinTheme = $theme;
   elseif (!in_array($SkinTheme, $ValidSkinThemes))
     $SkinTheme = $default;
-  if ($do_settheme) setcookie('settheme',$theme,$tt_cookieexpire,'/',$_SERVER['HTTP_HOST'],false,true);
+  if ($do_settheme) setcookie('settheme',$theme,SKINCOOKIEEXPIRE,'/',$_SERVER['HTTP_HOST'],false,true);
+  global $MessagesFmt;
+  $MessagesFmt[] = '<p>'.basename(__FILE__).'@'.__LINE__.': SKINCOOKIEEXPIRE: '.SKINCOOKIEEXPIRE.'</p>'.PHP_EOL;
+
+
   return $SkinTheme;
 }
 
