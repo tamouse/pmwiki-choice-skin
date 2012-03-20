@@ -48,7 +48,7 @@ $ChoiceSkinDefinedThemes['dark'] = '';
 $ChoiceSkinDefaultTheme = 'light';
 
 
-global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth, $HTMLStylesFmt ,$SkinTheme;
+global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth, $HTMLStylesFmt ,$SkinTheme,$SkinColor;
 if (!empty($PageLogoUrl)) {
   dg_SetLogoHeightWidth(15, 16);
   $HTMLStylesFmt['choice'] .=
@@ -59,6 +59,11 @@ if (!empty($PageLogoUrl)) {
 // retrieve the list of color schemes by listing the keys of the $ChoiceSkinDefinedColors
 $SkinColor = dg_SetSkinColor($ChoiceSkinDefaultColor, array_keys($ChoiceSkinDefinedColors)); 
 $SkinTheme = tt_SetSkinTheme($ChoiceSkinDefaultTheme, array_keys($ChoiceSkinDefinedThemes));
+
+// Set a wiki style so users can use the accent colour chosen. This is
+// used by surrounding the text in question with %accentcolor% ... %% 
+global $WikiStyle;
+$WikiStyle['accentcolor']['color'] = $SkinColor;
 
 // ----------------------------------------
 // - Standard Skin Setup
@@ -83,6 +88,7 @@ Markup('fieldsetend', 'inline', '/\\(:fieldsetend:\\)/i', "</fieldset>");
 // Define a link stye for new page links
 global $LinkPageCreateFmt;
 SDV($LinkPageCreateFmt, "<a class='createlinktext' href='\$PageUrl?action=edit'>\$LinkText</a>");
+
 
 // Override pmwiki styles otherwise they will override styles declared in css
 global $HTMLStylesFmt;
