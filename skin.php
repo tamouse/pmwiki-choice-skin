@@ -27,6 +27,8 @@ $FmtPV['$SkinVersion'] = '"2.0"';
 
 require_once('colordefinitions.inc.php');
 
+$tt_cookieexpire = time()+10*365*24*60*20; // now + 10 years
+
 global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth, $HTMLStylesFmt ,$SkinTheme,$SkinColor;
 if (!empty($PageLogoUrl)) {
   dg_SetLogoHeightWidth(15, 16);
@@ -109,7 +111,7 @@ function dg_SetSkinColor($default, $valid_colors){
     $SkinColor = $default;
 
   // only set the cookie if they passed a valid color
-  if ($do_setcookie) setcookie('setcolor',$SkinColor,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
+  if ($do_setcookie) setcookie('setcolor',$SkinColor,$tt_cookieexpire,'/',$_SERVER['HTTP_HOST'],false,true);
 
   return $SkinColor;
 }
@@ -136,7 +138,7 @@ function tt_SetSkinTheme($default, $valid_themes) {
     $SkinTheme = $theme;
   elseif (!in_array($SkinTheme, $ValidSkinThemes))
     $SkinTheme = $default;
-  if ($do_settheme) setcookie('settheme',$theme,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
+  if ($do_settheme) setcookie('settheme',$theme,$tt_cookieexpire,'/',$_SERVER['HTTP_HOST'],false,true);
   return $SkinTheme;
 }
 
