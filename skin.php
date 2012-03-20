@@ -112,9 +112,10 @@ function dg_SetSkinColor($default, $valid_colors){
     $SkinColor = $default;
 
   // only set the cookie if they passed a valid color
-  if ($do_setcookie) setcookie('setcolor',$SkinColor,SKINCOOKIEEXPIRE,'/',$_SERVER['HTTP_HOST'],false,true);
-  global $MessagesFmt;
-  $MessagesFmt[] = '<p>'.basename(__FILE__).'@'.__LINE__.': SKINCOOKIEEXPIRE: '.SKINCOOKIEEXPIRE.'</p>'.PHP_EOL;
+  if ($do_setcookie) {
+    setcookie('setcolor',$SkinColor,SKINCOOKIEEXPIRE,'/',$_SERVER['HTTP_HOST'],false,true);
+    // @sms('setcolor cookie SKINCOOKIEEXPIRE',SKINCOOKIEEXPIRE,__FILE__,__LINE__);
+  }
 
   return $SkinColor;
 }
@@ -141,10 +142,10 @@ function tt_SetSkinTheme($default, $valid_themes) {
     $SkinTheme = $theme;
   elseif (!in_array($SkinTheme, $ValidSkinThemes))
     $SkinTheme = $default;
-  if ($do_settheme) setcookie('settheme',$theme,SKINCOOKIEEXPIRE,'/',$_SERVER['HTTP_HOST'],false,true);
-  global $MessagesFmt;
-  $MessagesFmt[] = '<p>'.basename(__FILE__).'@'.__LINE__.': SKINCOOKIEEXPIRE: '.SKINCOOKIEEXPIRE.'</p>'.PHP_EOL;
-
+  if ($do_settheme) {
+    setcookie('settheme',$theme,SKINCOOKIEEXPIRE,'/',$_SERVER['HTTP_HOST'],false,true);
+    //    @sms('settheme cookie SKINCOOKIEEXPIRE',SKINCOOKIEEXPIRE,__FILE__,__LINE__);
+  }
 
   return $SkinTheme;
 }
