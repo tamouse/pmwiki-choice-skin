@@ -3,31 +3,70 @@
  *
  * Examples at: http://pmwiki.com/Cookbook/Choice and http://solidgone.org/Skins/
  * Copyright (c) 2009 David Gilbert
+ * Modifications (c) 2012 Tamara Temple
  * This work is licensed under a Creative Commons Attribution-Share Alike 3.0 United States License.
  * Please retain the links in the footer.
  * http://creativecommons.org/licenses/by-sa/3.0/us/
  */
+
+/*
+ * CHANGES by Tamara Temple <tamara@tamaratemple.com>
+ *
+ * Electrify color css by making the template invoke a php file for
+ * setting the various colour themes for the skin. Also set default
+ * accent colour in wikistyle so it can be used in wiki pages easily.
+ *
+ * Also add the ability to set a cookie to store the desired skin
+ * theme and skin colour.
+ */
+
+
 global $FmtPV;
 $FmtPV['$SkinName'] = '"Choice"';
-$FmtPV['$SkinVersion'] = '"1.0.2"';
+$FmtPV['$SkinVersion'] = '"2.0"';
+
+// Defined set of theme colours. These will become the accent colours
+// used on the site
+$ChoiceSkinDefinedColors['blue_bold'] = '#3366CC';
+$ChoiceSkinDefinedColors['blue_muted'] = '#82B0BF';
+$ChoiceSkinDefinedColors['green_bold'] = '#6C0';
+$ChoiceSkinDefinedColors['green_muted'] = '#92BF92';
+$ChoiceSkinDefinedColors['orange_bold'] = '#FF9900';
+$ChoiceSkinDefinedColors['orange_muted'] = '#D89C6B';
+$ChoiceSkinDefinedColors['red_bold'] = 'red';
+$ChoiceSkinDefinedColors['red_muted'] = 'FireBrick';
+$ChoiceSkinDefinedColors['purple_bold'] = 'MediumVioletRed';
+$ChoiceSkinDefinedColors['purple_muted'] = 'PaleVioletRed';
+
+$ChoiceSkinDefaultColor = 'green_muted';
+
+// Defined set of themes. These will become the background colours
+// used on the site
+$ChoiceSkinDefinedThemes['light'] = '';
+$ChoiceSkinDefinedThemes['dark'] = '';
+
+$ChoiceSkinDefaultTheme = 'light';
+
 
 global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth, $HTMLStylesFmt ,$SkinTheme;
 if (!empty($PageLogoUrl)) {
-	dg_SetLogoHeightWidth(15, 16);
-	$HTMLStylesFmt['choice'] .=
-		'#head .sitetitle a{height:' .$PageLogoUrlHeight .'; background: url(' .$PageLogoUrl .') no-repeat left top} '.
-		'#head .sitetitle a, #head .sitetag{padding-left: ' .$PageLogoUrlWidth .'} ';
+  dg_SetLogoHeightWidth(15, 16);
+  $HTMLStylesFmt['choice'] .=
+    '#head .sitetitle a{height:' .$PageLogoUrlHeight .'; background: url(' .$PageLogoUrl .') no-repeat left top} '.
+    '#head .sitetitle a, #head .sitetag{padding-left: ' .$PageLogoUrlWidth .'} ';
 }
-$SkinColor = dg_SetSkinColor('green_muted', array('blue_bold','blue_muted','green_bold','green_muted','orange_bold','orange_muted','red_bold','red_muted','purple_bold','purple_muted'));
-$SkinTheme = (isset($_GET['skintheme']) ?'class=\''.$_GET['skintheme'].'\'' :(isset($SkinTheme) ?'class=\''.$SkinTheme.'\'' :'') );
 
-# ----------------------------------------
-# - Standard Skin Setup
-# ----------------------------------------
+// retrieve the list of color schemes by listing the keys of the $ChoiceSkinDefinedColors
+$SkinColor = dg_SetSkinColor($ChoiceSkinDefaultColor, array_keys($ChoiceSkinDefinedColors)); 
+$SkinTheme = tt_SetSkinTheme($ChoiceSkinDefaultTheme, array_keys($ChoiceSkinDefinedThemes));
+
+// ----------------------------------------
+// - Standard Skin Setup
+// ----------------------------------------
 $FmtPV['$WikiTitle'] = '$GLOBALS["WikiTitle"]';
 $FmtPV['$WikiTag'] = '$GLOBALS["WikiTag"]';
 
-# Move any (:noleft:) or SetTmplDisplay('PageLeftFmt', 0); directives to variables for access in jScript.
+// Move any (:noleft:) or SetTmplDisplay('PageLeftFmt', 0); directives to variables for access in jScript.
 $FmtPV['$RightColumn'] = "\$GLOBALS['TmplDisplay']['PageRightFmt']";
 Markup('noright', 'directives',  '/\\(:noright:\\)/ei', "SetTmplDisplay('PageRightFmt',0)");
 $FmtPV['$ActionBar'] = "\$GLOBALS['TmplDisplay']['PageActionFmt']";
@@ -41,41 +80,80 @@ Markup('notitlegroup', 'directives',  '/\\(:notitlegroup:\\)/ei', "SetTmplDispla
 Markup('fieldset', 'inline', '/\\(:fieldset:\\)/i', "<fieldset>");
 Markup('fieldsetend', 'inline', '/\\(:fieldsetend:\\)/i', "</fieldset>");
 
-# Define a link stye for new page links
+// Define a link stye for new page links
 global $LinkPageCreateFmt;
 SDV($LinkPageCreateFmt, "<a class='createlinktext' href='\$PageUrl?action=edit'>\$LinkText</a>");
 
-# Override pmwiki styles otherwise they will override styles declared in css
+// Override pmwiki styles otherwise they will override styles declared in css
 global $HTMLStylesFmt;
 $HTMLStylesFmt['pmwiki'] = '';
 
-# Add a custom page storage location
+// Add a custom page storage location
 global $WikiLibDirs;
-$PageStorePath = dirname(__FILE__)."/wikilib.d/{\$FullName}";
+// okay, the following dot operation seems to be driving emacs PHP
+// mode nuts. AH HA: Needed to put the dirname call in parens. ~tpt
+$PageStorePath = (dirname(__FILE__)).'/wikilib.d/{$FullName}';
 $where = count($WikiLibDirs);
 if ($where>1) $where--;
 array_splice($WikiLibDirs, $where, 0, array(new PageStore($PageStorePath)));
 
-# ----------------------------------------
-# - Standard Skin Functions
-# ----------------------------------------
+// ----------------------------------------
+// - Standard Skin Functions
+// ----------------------------------------
 function dg_SetSkinColor($default, $valid_colors){
-global $SkinColor, $ValidSkinColors, $_GET;
-	if ( !is_array($ValidSkinColors) ) $ValidSkinColors = array();
-	$ValidSkinColors = array_merge($ValidSkinColors, $valid_colors);
-	if ( isset($_GET['color']) && in_array($_GET['color'], $ValidSkinColors) )
-		$SkinColor = $_GET['color'];
-	elseif ( !in_array($SkinColor, $ValidSkinColors) )
-		$SkinColor = $default;
-	return $SkinColor;
+  global $SkinColor, $ValidSkinColors;
+  if ( !is_array($ValidSkinColors) ) $ValidSkinColors = array();
+  $ValidSkinColors = array_merge($ValidSkinColors, $valid_colors);
+
+  // expand this to check for a cookie as well
+  if (tt_GorC('setcolor')) {
+    // color specified and want to save a cookie for the user
+    $color = tt_GorC('setcolor');
+    setcookie('setcolor',$color,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
+  } elseif (tt_GorC('color')) {
+    $color = tt_GorC('color');
+  }
+  if ($color && in_array($color, $ValidSkinColors) )
+    $SkinColor = $color;
+  elseif ( !in_array($SkinColor, $ValidSkinColors) )
+    $SkinColor = $default;
+  return $SkinColor;
 }
 
-# Determine logo height and width
+// Set the skin theme either from query string or cookie or default
+function tt_SetSkinTheme($default, $valid_themes) {
+  global $SkinTheme, $ValidSkinThemes;
+  if (!is_array($ValidSkinThemes)) $ValidSkinThemes = array();
+  $ValidSkinThemes = array_merge($ValidSkinThemes, $valid_themes);
+  
+  // check to see if we're setting the theme
+  if (tt_GorC('settheme')) {
+    // theme specified, save in a cookie for user
+    $theme = tt_GorC('settheme');
+    setcookie('settheme',$theme,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
+  } elseif (tt_GorC('theme')) {
+    $theme = tt_GorC('theme');
+  }
+  if ($theme && in_array($theme, $ValidSkinThemes))
+    $SkinTheme = $theme;
+  elseif (!in_array($SkinTheme, $ValidSkinThemes))
+    $SkinTheem = $default;
+}
+
+// Determine logo height and width
 function dg_SetLogoHeightWidth ($wPad, $hPad=0){
-global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth;
-	if (!isset($PageLogoUrlWidth) || !isset($PageLogoUrlHeight)){
-		$size = @getimagesize($PageLogoUrl);
-		if (!isset($PageLogoUrlWidth))  SDV($PageLogoUrlWidth, ($size ?$size[0]+$wPad :0) .'px');
-		if (!isset($PageLogoUrlHeight))  SDV($PageLogoUrlHeight, ($size ?$size[1]+$hPad :0) .'px');
-	}
+  global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth;
+  if (!isset($PageLogoUrlWidth) || !isset($PageLogoUrlHeight)){
+    $size = @getimagesize($PageLogoUrl);
+    if (!isset($PageLogoUrlWidth))  SDV($PageLogoUrlWidth, ($size ?$size[0]+$wPad :0) .'px');
+    if (!isset($PageLogoUrlHeight))  SDV($PageLogoUrlHeight, ($size ?$size[1]+$hPad :0) .'px');
+  }
+}
+
+// Retrieve a value from GET or COOKIE if set
+function tt_GorC ($v) {
+  if (isset($_GET[$v])) return $_GET[$v]; // query string overrides
+					  // cookie value
+  if (isset($_COOKIE[$v])) return $_COOKIE[$v];
+  return FALSE;
 }
