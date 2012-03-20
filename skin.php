@@ -90,18 +90,27 @@ function dg_SetSkinColor($default, $valid_colors){
   if ( !is_array($ValidSkinColors) ) $ValidSkinColors = array();
   $ValidSkinColors = array_merge($ValidSkinColors, $valid_colors);
 
+  $color=false; // initially no colour specified
+
   // expand this to check for a cookie as well
-  if (tt_GorC('setcolor')) {
-    // color specified and want to save a cookie for the user
-    $color = tt_GorC('setcolor');
-    setcookie('setcolor',$color,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
-  } elseif (tt_GorC('color')) {
-    $color = tt_GorC('color');
+  if (isset($_COOKIE['setcolor'])) {
+    $color = $_COOKIE['setcolor']; // this is our starting point
+  }
+  $do_setcookie=false; // default value
+  if (isset($_GET['setcolor'])) {
+    $color = $_GET['setcolor']; // this overrides prior
+    $do_setcookie=true; // set for setting cookie in a bit
+  } elseif (isset($_GET['color'])) {
+    $color = $_GET['color']; // will only be used if setcolor is missing
   }
   if ($color && in_array($color, $ValidSkinColors) )
     $SkinColor = $color;
   elseif ( !in_array($SkinColor, $ValidSkinColors) )
     $SkinColor = $default;
+
+  // only set the cookie if they passed a valid color
+  if ($do_setcookie) setcookie('setcolor',$SkinColor,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
+
   return $SkinColor;
 }
 
@@ -110,19 +119,24 @@ function tt_SetSkinTheme($default, $valid_themes) {
   global $SkinTheme, $ValidSkinThemes;
   if (!is_array($ValidSkinThemes)) $ValidSkinThemes = array();
   $ValidSkinThemes = array_merge($ValidSkinThemes, $valid_themes);
-  
+
+  $theme=false; // initial setting is no theme specified
   // check to see if we're setting the theme
-  if (tt_GorC('settheme')) {
-    // theme specified, save in a cookie for user
-    $theme = tt_GorC('settheme');
-    setcookie('settheme',$theme,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
-  } elseif (tt_GorC('theme')) {
-    $theme = tt_GorC('theme');
+  if (isset($_COOKIE['settheme'])) {
+    $theme = $_COOKIE['settheme'];
+  }
+  $do_settheme = false;
+  if (isset($_GET['settheme'])) {
+    $theme = $_GET['settheme'];
+    $do_settheme = true;
+  } elseif (isset($_GET['theme'])) {
+    $theme = $_GET['theme'];
   }
   if ($theme && in_array($theme, $ValidSkinThemes))
     $SkinTheme = $theme;
   elseif (!in_array($SkinTheme, $ValidSkinThemes))
     $SkinTheme = $default;
+  if ($do_settheme) setcookie('settheme',$theme,mktime(0,0,0,1,1,2050),'/',$_SERVER['HTTP_HOST'],false,true);
   return $SkinTheme;
 }
 
@@ -136,10 +150,3 @@ function dg_SetLogoHeightWidth ($wPad, $hPad=0){
   }
 }
 
-// Retrieve a value from GET or COOKIE if set
-function tt_GorC ($v) {
-  if (isset($_GET[$v])) return $_GET[$v]; // query string overrides
-					  // cookie value
-  if (isset($_COOKIE[$v])) return $_COOKIE[$v];
-  return FALSE;
-}
