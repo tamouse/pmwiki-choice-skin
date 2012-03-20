@@ -7,11 +7,6 @@ body {
 	width: 85%;
 	margin: 0 auto;
 	font:  1.0em 'trebuchet ms',arial,sans-serif;
-	color: #777;
-}
-body.dark {
-	background-color: #222;
-	color: #CCC;
 }
 
 #nav {
@@ -39,15 +34,7 @@ body.dark {
 	display: block;
 	text-decoration: none;
 	font:  1.1em 'trebuchet ms',arial,sans-serif;
-	color: #999;
 	letter-spacing: -1px;
-}
-
-#nav li a:hover {
-	background: #FFF url('arrow.gif') no-repeat top center;
-}
-body.dark #nav li a:hover {
-	background: #222 url('arrow_dark.gif') no-repeat top center;
 }
 
 #head {
@@ -58,7 +45,6 @@ body.dark #nav li a:hover {
 
 #head h1 {
 	font:  5.5em arial,sans-serif;
-	color: #666;
 	margin-top: 50px;
 	margin-bottom: 0px;
 	padding-bottom: 0px;
@@ -67,11 +53,7 @@ body.dark #nav li a:hover {
 	height: 1.15em;
 }
 #head h1 a {
-	color: #666;
 	text-decoration: none;
-}
-body.dark #head h1, body.dark #head h1 a {
-	color: #FFF;
 }
 #head h2, #head .sitetag {
 	font:  2.5em 'trebuchet ms',arial,sans-serif;
@@ -91,15 +73,14 @@ body.dark #head h1, body.dark #head h1 a {
 #right {
 	width: 24%;
 	float: right;
-	border-top: 5px solid #ECECEC;
+	border-top-width: 5px;
+	border-top-style: solid;
 	padding-top: 40px;
 	text-align: right;
 	margin-bottom: 40px;
 	margin-right:2px;
 }
-body.dark #right {
-	border-top: 5px solid #191919;
-}
+
 #right ul, .right2 ul {
 	list-style: none;
 	margin: 0 0 20px 0;
@@ -108,28 +89,12 @@ body.dark #right {
 
 #right li, .right2 li, .sidehead a {
 	padding: 0 0 0 20px;
-	/*color: #777;*/
 }
 
 #right li a, .right2 li a, .sidehead a, #right dd a, .right2 dd a, .sidehead dd a {
 	padding: 0 0 0 20px ;
 	font-size: 0.9em;
-	/*color: #777;*/
-	/* border-bottom: 1px dashed #777; */
 
-}
-/*body.dark #right li a, body.dark #right dd a, body.dark #right dt a,
-body.dark .right2 li a, body.dark .right2 dd a, body.dark .right2 dt a,
-body.dark .sidehead dd a, body.dark .sidehead dt a {
-	color: #CCC;
-}*/
-#right li a:hover, #right dd a:hover, #right dt a:hover, .right2 li a:hover, .right2 dd a:hover, .right2 dt a:hover, .sidehead a:hover {
-	background: #FFF url('bullet.gif') no-repeat left center;
-}
-body.dark #right li a:hover, body.dark #right dd a:hover, body.dark #right dt a:hover, 
-body.dark .right2 li a:hover, body.dark .right2 dd a:hover, body.dark .right2 dt a:hover,
-body.dark .sidehead a:hover {
-	background: #222 url('bullet_dark.gif') no-repeat left center;
 }
 
 #right dl {margin-top: 10px;margin-bottom: 10px;}
@@ -144,23 +109,17 @@ body.dark .sidehead a:hover {
 #content {
 	float: left;
 	width: 69%;
-	border-top: 5px solid #ECECEC;
+	border-top-width: 5px;
+	border-top-style: solid;
 	padding-top: 40px;
 	margin-bottom: 40px;
-}
-body.dark #content {
-	border-top: 5px solid #191919;
 }
 /*h2 { clear: both; }*/
 h2, #content h2.page-head a {
 	font: 1.4em arial,sans-serif;
-	color: #444;
 	letter-spacing: -0.1em;
 	margin-bottom: 0;
 	text-transform: uppercase;
-}
-body.dark h2, body.dark #content h2.page-head a {
-	color: #FFF;
 }
 h3 {
 	font:  1.2em 'trebuchet ms',arial,sans-serif;
@@ -171,18 +130,14 @@ h3 {
 
 h4, p.sidehead, h4 a, p.sidehead a {
 	font:  1.2em arial,sans-serif;
-	color: #CCC;
 	letter-spacing: -0.1em;
 	margin-bottom: 10px;
 	text-transform: uppercase;
 }
-/*body.dark h4, body.dark p.sidehead, body.dark h4 a, body.dark p.sidehead a {
-	color: #CCC;
-}*/
+
 p {
 	line-height: 1.8em;
 	margin: 10px 0 20px 0;
-	/*font-size: 0.9em;*/
 }
 
 
@@ -197,31 +152,26 @@ p {
 img.content, a img.content {
 	float: right;
 	padding: 4px;
-	border: 1px solid #D6D6D6;
+	border-width: 1px;
+	border-style: solid;
 	margin: 10px 0 10px 10px;
 }
-body.dark img.content, body.dark a img.content {
-	border: 1px solid #444;
-}
 a:hover img.content {
-	border: 1px solid #BBB;
-}
-body.dark a:hover img.content {
-	border: 1px solid #000;
+	border-width: 1px;
+	border-style: solid;
 }
 
 img.color, a img.color {
 	float: left;
 	padding: 1px;
-	border: 1px solid #CCC;
+	border-width: 1px;
+	border-style: solid;
 	margin: 0 8px 0 0;
-}
-body.dark img.color, body.dark a img.color {
-	border: 1px solid #444;
 }
 
 a:hover img.color {
-	border: 1px solid #999;
+	border-width: 1px;
+	border-style: solid;
 }
 
 .right2 {
@@ -229,12 +179,10 @@ a:hover img.color {
 	width: 160px;
 	margin-left: 15px;
 	padding-top: 40px;
-	border-top: 5px solid #ECECEC;
+	border-top-width: 5px;
+	border-top-style: solid;
 	text-align: right;
 	font-size: 0.9em;
-}
-body.dark .right2 {
-	border-top: 5px solid #191919;
 }
 .right2 h3 {
 	letter-spacing: -1px;
@@ -242,11 +190,9 @@ body.dark .right2 {
 
 #content2 {
 	margin-right: 365px;
-	border-top: 5px solid #ECECEC;
+	border-top-width: 5px;
+	border-top-style: solid;
 	padding-top: 40px;
-}
-body.dark #content2 {
-	border-top: 5px solid #191919;
 }
 ol {
 	/*color: #AAA;*/
@@ -256,7 +202,6 @@ ol {
 
 ol span {
 	font:  1.0em 'trebuchet ms',arial,sans-serif;
-	color: #777;
 	font-style: normal;
 }
 
@@ -268,17 +213,13 @@ ol li {
 #content ul, #content2 ul {
 	list-style-type: none;
 	padding: 10px;
-	/*color: #777*/
 }
 
 #content ul li, #content2 ul li {
 	padding-left: 17px;
-	background: url('bullet2.gif') no-repeat left .5em;
 	margin-left: 10px;
 }
-body.dark #content ul li, body.dark #content2 ul li {
-	background: url('bullet2_dark.gif') no-repeat left .5em;
-}
+
 
 table {
 	width: 100%;
@@ -295,8 +236,7 @@ table caption {
 	letter-spacing: -1px;
 }
 
-table th,
-table td {
+table th, table td {
 	/*text-align: left;*/
 	vertical-align: top;
 	padding: 4px 7px !important;
@@ -305,42 +245,32 @@ table td {
 
 
 thead th {
-	border-top: 2px solid #CCC;
-	border-bottom: 1px solid #CCC;
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 }
-body.dark thead th {
-	border-top: 2px solid #0C0C0C;
-	border-bottom: 1px solid #0C0C0C;
-}
-
 
 tbody td {
-	border-bottom: 1px solid #ECECEC;
-}
-body.dark tbody td {
-	border-bottom: 1px solid #191919;
-}
-
-tbody tr:hover {
-	background-color: #F0F0F0;
-}
-body.dark tbody tr:hover {
-	background-color: #202020;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 }
 
 .blockquote, #wikitext .escaped {
 	width: 100%;
-	border-top: 1px solid #E0E0E0;
-	border-bottom: 1px solid #E0E0E0;
-	background-color: #F0F0F0;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-bottom-width: 1px;
+	border-bottome-style: solid;
 	margin: 10px 0 20px 10px;
 	padding: 5px;
 	font-style: italic;
 }
 body.dark .blockquote, body.dark #wikitext .escaped {
-	border-top: 1px solid #191919;
-	border-bottom: 1px solid #191919;
-	background-color: #202020;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 }
 
 form label{
@@ -348,77 +278,49 @@ form label{
 }
 
 form input.inputbox, form input.text, form textarea, input[type=text]{
-	border:1px #E0E0E0 solid;
-	color:#666;
+	border-width:1px;
+	border-style: solid;
 	padding:4px 5px;
 	font:12px Arial,san-serif;
-	background-color: #F3F3F3;
 }
 form textarea{
 	width:100%;
 }
-/*body.dark form input.inputbox, body.dark form input.text, body.dark form textarea, body.dark form input[type=text]{
-	border:1px #111 solid;
-	background-color: #191919;
-}*/
-
 form input.text:hover, form textarea:hover, form input[type=text]:hover{
-	border:1px #E0E0E0 solid;
+	border-width:1px;
+	border-style:solid;
 }
-/*body.dark form input.text:hover, body.dark form textarea:hover, body.dark form input[type=text]:hover{
-	border:1px #111 solid;
-}*/
 
 form input.text:focus, form textarea:focus, form input[type=text]:focus{
-	border:1px #CCC solid;
-	color:#666;
+	border-width:1px;
+	border-style:solid;
 }
-/*body.dark form input.text:focus, body.dark form textarea:focus, body.dark input[type=text]:focus{
-	border:1px #000 solid;
-}*/
 
 form input.button, form input.inputbutton, form input[type=submit]{
 	margin-right:8px;
 	padding:3px 5px;
 	font:12px Arial,san-serif;
-	border:1px solid #CCC;
+	border-width:1px;
+	border-style:solid;
 }
-/*body.dark form input.button, body.dark form input.inputbutton, body.dark form input[type=submit]{
-	border:1px solid #000;
-}
-*/
-* html form input.text,
-* html form textarea{
-	border-color: #CCC;
-	color:#333;
-}
-/** html body.dark form input.text,
-* html body.dark form textarea{
-	border-color: #111;
-}
-*/
+
 #foot {
 	width: 100%;
-	border-top: 3px solid #ECECEC;
+	border-top-width: 3px;
+	border-top-style: solid;
 	padding: 0 0 40px 0;
 	margin-top: 40px;
 	clear: both;
-}
-body.dark #foot {
-	border-top: 3px solid #191919;
 }
 
 
 body div.indent {
 	margin-left:40px;
 	margin-right:40px;
-	color:#777;
 }
 body.dark div.indent {
 	margin-left:40px;
 	margin-right:40px;
-	color:#AAA;
-	background-color:#333;
 }
 
 
@@ -438,7 +340,7 @@ fieldset { border: none; }
 #comment-text { margin-top: 25px; }
 #wikitext .escaped { overflow: auto; height: auto; width: 90%; margin: 1.5em auto; padding: .15em; }
 #wikitext .quickref p, #wikitext .quickref .outdent, #wikitext .quickref div, #wikitext .quickref strong {font-size:1em; margin:0; text-align:left; text-indent:0; line-height: 2em}
-#wikitext hr {border:2px solid #ECECEC; margin:2em 0}
+#wikitext hr {border-width:2px;border-style: solid; margin:2em 0}
 #wikiedit, #wikiedit form input[type=submit] { margin-top: 25px; }
 #wikiedit #text { margin-bottom: 25px; }
 #wikiedit form a { border: none; }
@@ -454,18 +356,17 @@ a.createlink { padding: 0 !important; position:relative; top:-0.5em; font-size:.
 .metadata { margin-top: -.3em; height: 2.5em; font-size: .8em; }
 .date { float: left; margin-top: -.3em; text-transform: uppercase; font:  1.7em 'trebuchet ms',arial,sans-serif; padding-top: 0px; letter-spacing: -1px; }
 .author { float: left; margin-left: 6px; }
-.author a { margin-top: 1px; color: #666; }
+.author a { margin-top: 1px;}
 .entry-content { clear: left; }
 .entrytags, .comment-count, .editlink { float: right; text-transform: lowercase; }
 .editlink { margin-left: 20px; }
 .blogit-listmore { margin-top: -20px; margin-bottom: 20px; }
 li.comment { margin-top: 10px; }
-li.comment .blogit-comment-header { color:#999; }
 #head .sitetitle a { display: block; }
 .entry { clear: both; }
 .page-navigation { margin: 20px 0; padding: 20px 0 40px; font-weight: bold; }
-.blogit-previous-entries a { float: left; padding-left: 18px; background: url(mini-nav-left.gif) no-repeat left center; }
-.blogit-next-entries a { float: right;	padding-right: 18px;	background: url(mini-nav-right.gif) no-repeat right center; }
+.blogit-previous-entries a { float: left; padding-left: 18px; background: url('img/mini-nav-left.gif') no-repeat left center; }
+.blogit-next-entries a { float: right;	padding-right: 18px;	background: url('img/mini-nav-right.gif') no-repeat right center; }
 #commentblock { padding-top: 60px; }
 dl {margin-top: 10px;margin-bottom: 10px;}
 dt {float:left;;width:25%;text-align:left;}

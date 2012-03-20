@@ -1,0 +1,248 @@
+/*
+ * color
+ *
+ * Author: Tamara Temple <tamara@tamaratemple.com>
+ * Created: 2012-03-20
+ * Copyright (c) 2012 
+ * License: GPLv3
+ *
+ */
+
+/* color settings */
+
+body {
+    background-color: #FFFFFF;
+    color: #777;
+}
+
+body.dark {
+    background-color: #222;
+    color: #CCC;
+}
+
+#nav li a {
+    color: #999;
+}
+
+#nav li a:hover {
+    color: <?php echo $color; ?>;
+}
+
+#nav li a:hover {
+    background: #FFF url('img/arrow.gif') no-repeat top center;
+}
+
+body.dark #nav li a:hover {
+    background-color: #222 url('img/arrow_dark.gif') no-repeat top center;
+}
+
+#head h1 { color: #666; }
+
+#head h1 a { color: #666; }
+
+body.dark #head h1, body.dark #head h1 a {
+    color: #FFF;
+}
+
+#head h2, #head .sitetag {
+    color: <?php echo $color; ?>;
+}
+
+/*#right li a:hover, #right dt a:hover, #right dd a:hover,
+  .right2 li a:hover, .right2 dt a:hover, .right2 dd a:hover, 
+  .sidehead a:hover*/
+a:hover {
+    color: <?php echo $color; ?>;
+    border-bottom: none;
+}
+/*body.dark #right li a, body.dark #right dd a, body.dark #right dt a,
+body.dark .right2 li a, body.dark .right2 dd a, body.dark .right2 dt a,
+body.dark .sidehead dd a, body.dark .sidehead dt a {
+	color: #CCC;
+}*/
+
+#right { border-top-color:  #ECECEC; }
+
+body.dark #right { border-top-color:  #191919; }
+
+#right li a:hover, #right dd a:hover, #right dt a:hover, .right2 li a:hover, .right2 dd a:hover, .right2 dt a:hover, .sidehead a:hover {
+	background: #FFF url('img/bullet.gif') no-repeat left center;
+}
+
+body.dark #right li a:hover, body.dark #right dd a:hover, body.dark #right dt a:hover, body.dark .right2 li a:hover, body.dark .right2 dd a:hover, body.dark .right2 dt a:hover, body.dark .sidehead a:hover {
+	background: #222 url('img/bullet_dark.gif') no-repeat left center;
+}
+
+h2, .date {
+    color: <?php echo $color; ?>;
+}
+
+#content { border-top-color: #ECECEC; }
+
+body.dark #content { border-top-color:  #191919; }
+
+h2, #content h2.page-head a { color: #444; }
+
+body.dark h2, body.dark #content h2.page-head a { color: #FFF; }
+
+h4, p.sidehead, h4 a, p.sidehead a { color: #CCC; }
+
+/*body.dark h4, body.dark p.sidehead, body.dark h4 a, body.dark p.sidehead a {
+	color: #CCC;
+}*/
+
+
+
+/*#content a, #content2 a, #foot a, .blogit-listmore a {
+  color: <?php echo $color; ?>;
+  border-bottom: 1px dotted <?php echo $color;?>;
+  }*/
+a {
+    color: <?php echo $color; ?>;
+    border-bottom: 1px dotted <?php echo $color; ?>;
+}
+
+img.content, a img.content { border-color: #D6D6D6; }
+
+img.content, a img.content {
+    background-color: <?php echo $color; ?>;
+}
+
+a:hover img.content {border-color: #BBB;}
+
+body.dark a:hover img.content {border-color: #000;}
+
+body.dark img.content, body.dark a img.content {border-color:  #444;}
+
+img.color, a img.color {border-color: #CCC;}
+body.dark img.color, body.dark a img.color {border-color:  #444;}
+
+a:hover img.color {border-color: #999;}
+
+.right2 {border-top-color: #ECECEC;}
+body.dark .right2 {border-top-color: #191919;}
+
+#content2 {border-top-color: #ECECEC;}
+body.dark #content2 {border-top-color:  #191919;}
+
+ol span {color: #777;}
+
+#content ul li, #content2 ul li {
+	background: url('img/bullet2.gif') no-repeat left .5em;
+}
+body.dark #content ul li, body.dark #content2 ul li {
+	background: url('img/bullet2_dark.gif') no-repeat left .5em;
+}
+
+thead th {
+	border-top-color:  #CCC;
+	border-bottom-color: #CCC;
+}
+body.dark thead th {
+	border-top-color: #0C0C0C;
+	border-bottom-color: #0C0C0C;
+}
+
+
+tbody td {
+	border-bottom-color: #ECECEC;
+}
+body.dark tbody td {
+	border-bottom-color: #191919;
+}
+
+tbody tr:hover {
+	background-color: #F0F0F0;
+}
+body.dark tbody tr:hover {
+	background-color: #202020;
+}
+
+table tr th, thead th, tbody th {
+    color: <?php echo $color; ?>;
+}
+
+.blockquote, #wikitext .escaped {
+	border-top-color:  #E0E0E0;
+	border-bottom-color: #E0E0E0;
+	background-color: #F0F0F0;
+}
+body.dark .blockquote, body.dark #wikitext .escaped {
+	border-top-color: #191919;
+	border-bottom-color: #191919;
+	background-color: #202020;
+}
+
+form input.inputbox, form input.text, form textarea, input[type=text]{
+	border-color: #E0E0E0;
+	color:#666;
+	background-color: #F3F3F3;
+}
+
+/*body.dark form input.inputbox, body.dark form input.text, body.dark form textarea, body.dark form input[type=text]{
+	border-color:  #111111;
+	background-color: #191919;
+}*/
+
+form input.text:hover, form textarea:hover, form input[type=text]:hover{
+	border-color: #E0E0E0;
+}
+/*body.dark form input.text:hover, body.dark form textarea:hover, body.dark form input[type=text]:hover{
+	border-color: #111;
+}*/
+
+form input.text:focus, form textarea:focus, form input[type=text]:focus{
+	border-color: #CCC;
+	color:#666;
+}
+/*body.dark form input.text:focus, body.dark form textarea:focus, body.dark input[type=text]:focus{
+	border-color: #000;
+}*/
+
+form input.button, form input.inputbutton, form input[type=submit]{
+	border-color: #CCC;
+}
+/*body.dark form input.button, body.dark form input.inputbutton, body.dark form input[type=submit]{
+	border-color: #000;
+}
+*/
+
+* html form input.text, * html form textarea{
+	border-color: #CCC;
+	color:#333;
+}
+/** html body.dark form input.text,
+* html body.dark form textarea{
+	border-color: #111;
+}
+*/
+
+#foot {
+	border-top-color:  #ECECEC;
+}
+
+body.dark #foot {
+	border-top-color:  #191919;
+}
+
+body div.indent {
+	color:#777;
+}
+body.dark div.indent {
+	color:#AAA;
+	background-color:#333;
+}
+
+#wikitext hr {border-color: #ECECEC; margin:2em 0}
+
+.author a { color: #666; }
+body.dark .author a {color:#AAA;}
+
+li.comment .blogit-comment-header { color:#999; }
+
+
+.accentcolor { color: <?php echo $color; ?>; }
+
+.leftbar { border-left-color: <?php echo $color; ?>; }
+
+

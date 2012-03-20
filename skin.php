@@ -25,28 +25,7 @@ global $FmtPV;
 $FmtPV['$SkinName'] = '"Choice"';
 $FmtPV['$SkinVersion'] = '"2.0"';
 
-// Defined set of theme colours. These will become the accent colours
-// used on the site
-$ChoiceSkinDefinedColors['blue_bold'] = '#3366CC';
-$ChoiceSkinDefinedColors['blue_muted'] = '#82B0BF';
-$ChoiceSkinDefinedColors['green_bold'] = '#6C0';
-$ChoiceSkinDefinedColors['green_muted'] = '#92BF92';
-$ChoiceSkinDefinedColors['orange_bold'] = '#FF9900';
-$ChoiceSkinDefinedColors['orange_muted'] = '#D89C6B';
-$ChoiceSkinDefinedColors['red_bold'] = 'red';
-$ChoiceSkinDefinedColors['red_muted'] = 'FireBrick';
-$ChoiceSkinDefinedColors['purple_bold'] = 'MediumVioletRed';
-$ChoiceSkinDefinedColors['purple_muted'] = 'PaleVioletRed';
-
-$ChoiceSkinDefaultColor = 'green_muted';
-
-// Defined set of themes. These will become the background colours
-// used on the site
-$ChoiceSkinDefinedThemes['light'] = '';
-$ChoiceSkinDefinedThemes['dark'] = '';
-
-$ChoiceSkinDefaultTheme = 'light';
-
+require_once('colordefinitions.inc.php');
 
 global $PageLogoUrl, $PageLogoUrlHeight, $PageLogoUrlWidth, $HTMLStylesFmt ,$SkinTheme,$SkinColor;
 if (!empty($PageLogoUrl)) {
@@ -58,7 +37,7 @@ if (!empty($PageLogoUrl)) {
 
 // retrieve the list of color schemes by listing the keys of the $ChoiceSkinDefinedColors
 $SkinColor = dg_SetSkinColor($ChoiceSkinDefaultColor, array_keys($ChoiceSkinDefinedColors)); 
-$SkinTheme = tt_SetSkinTheme($ChoiceSkinDefaultTheme, array_keys($ChoiceSkinDefinedThemes));
+$SkinTheme = 'class=\''.tt_SetSkinTheme($ChoiceSkinDefaultTheme, array_keys($ChoiceSkinDefinedThemes)).'\'';
 
 // Set a wiki style so users can use the accent colour chosen. This is
 // used by surrounding the text in question with %accentcolor% ... %% 
