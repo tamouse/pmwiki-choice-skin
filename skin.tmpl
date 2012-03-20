@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>$WikiTitle {$Group}/{$Titlespaced}</title>
+	<meta name="generator" content="PmWiki" />
+	<link rel="stylesheet" type="text/css" href="$SkinDirUrl/color/$SkinColor.css" media="screen" title="style (screen)" />
+	<link rel="stylesheet" type="text/css" href="$SkinDirUrl/mainstyle/style.css" media="screen" title="style (screen)" />
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="$SkinDirUrl/mainstyle/ie7.css" media="screen" title="style (screen)" /><![endif]-->
+<!--HTMLHeader-->
+</head>
+
+<body $SkinTheme>
+	<div id="nav">
+		<!--PageTabsFmt-->
+		<!--wiki:{$Group}.SiteNav {$SiteGroup}.SiteNav -->
+		<!--/PageTabsFmt-->
+	</div>
+
+	<div id="head">
+		<!--PageHeaderFmt-->
+		<!--wiki:{$Group}.SiteHeader {$SiteGroup}.SiteHeader-->
+		<!--/PageHeaderFmt-->
+	</div>
+
+	<div class="main">
+		<div id="content">	<!--DJG: content2-->
+			<!--PageTitleGroupFmt-->
+			<a href='{$ScriptUrl}/{$Group}' class="pagegroup">{$Group}</a>
+			<!--/PageTitleGroupFmt-->
+			<!--PageTitleFmt-->
+			<h2 class='page-head'><a href='{$PageUrl}'>{$Titlespaced}</a></h2>
+			<!--/PageTitleFmt-->
+			<!-- <div id="page_d" style="overflow: auto; padding-top:10px; height:640px"> -->
+			<!--PageText-->
+			<!-- </div> -->
+		</div>
+
+		<!--PageRightFmt-->
+		<div id="right">	<!--DJG: "right2"-->
+			<h4>$[Search]</h4>
+			<form id="searchform" action='$ScriptUrl' method="get"><fieldset>
+				<input type='hidden' name='n' value='{$FullName}' />
+				<input type='hidden' name='action' value='search' />
+				<p>
+					<input id='s' class='text' type='text' name='q' value="" />
+					<input id='searchsubmit' class='button' type='submit' value='$[Go]' />
+				</p>
+			</fieldset></form>
+
+			<!--PageActionFmt-->
+				<div class="pageactions">
+				<!--wiki:{$Group}.PageActions {$SiteGroup}.PageActions-->
+				</div>
+			<!--/PageActionFmt-->
+
+			<!--wiki:{$Group}.SideBar {$SiteGroup}.SideBar-->
+		</div>
+		<!--/PageRightFmt-->
+
+		<div id="foot">
+			<!--PageFooterFmt-->
+				<!--wiki:{$Group}.SiteFooter {$SiteGroup}.SiteFooter-->
+			<!--/PageFooterFmt-->
+			<p class="credits">
+				<a href="http://pmwiki.com/Cookbook/Choice">Choice</a> $[theme originally by] <a href="http://demusdesign.com/">DemusDesign</a>, $[adapted by] <a href="http://solidgone.org/Skins">David Gilbert</a>, $[powered by] <a href="http://pmwiki.com/">PmWiki</a>
+			</p>
+		</div>
+	</div>
+
+<!--HTMLFooter-->
+</body>
+</html>

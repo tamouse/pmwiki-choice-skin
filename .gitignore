@@ -1,0 +1,25 @@
+# the usual suspects
+__MACOSX
+.DS_Store
+.backups
+.svn
+*.tmp
+*.bak*
+
+# don't store packages, archives, etc. from other places
+*.Z
+*.zip
+*.tgz
+*.gz
+*.bz2
+*.bzip2
+*.tar
+*.tgz
+
+# these are emacs cruft
+*~
+\#*\#
+.\#*
+
+# these are generated css files
+color/*.css
