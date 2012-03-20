@@ -247,3 +247,6 @@ li.comment .blogit-comment-header { color:#999; }
 
 
 .callout {border-color: <?php echo $color; ?>;}
+
+/* this is for the pagetoc.php recipe */
+body.dark .toc {background-color: #333;}
