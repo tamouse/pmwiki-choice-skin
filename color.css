@@ -246,3 +246,4 @@ li.comment .blogit-comment-header { color:#999; }
 .leftbar { border-left-color: <?php echo $color; ?>; }
 
 
+.callout {border-color: <?php echo $color; ?>;}
